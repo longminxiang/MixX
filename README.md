@@ -31,7 +31,7 @@ Then, select the dependency rule and press **Add Package**.
 @MixO var name: String = "aname"
 ```
 
-2. Move the View to MixX, Then you can change the name what ever you want
+2. Move the View to MixX, Then you can change the name whatever you want
 
 ```swift
 MixX($name) { name in
