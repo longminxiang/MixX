@@ -28,46 +28,48 @@ Then, select the dependency rule and press **Add Package**.
 1. Replace @State with @MixO
 
 ```swift
-    @MixO var name: String = "aname"
+@MixO var name: String = "aname"
 ```
 
 2. Move the View to MixX, Then you can change the name what ever you want
 
 ```swift
-    MixX($name) { name in
-        Text(name)
-    }
+MixX($name) { name in
+    Text(name)
+}
 ```
 
 Full example code:
 
-    struct ContentView: View {
-        @MixO var name: String = "aname"
+```swift
+struct ContentView: View {
+    @MixO var name: String = "aname"
 
-        init() {
-            // It's OK to do this in init function
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [self] _ in
-                self.name = "name_\(Int.random(in: 0..<1000))"
-            }
-        }
-
-        var body: some View {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Name: ")
-                    // Only update this view when the name changed
-                    MixX($name) { name in
-                        Text(name)
-                    }
-                }
-                HStack {
-                    Text("Input: ")
-                    MixB($name) { binding in
-                        TextField("input name", text: binding)
-                            .background(Color.gray.opacity(0.3))
-                    }
-                }
-            }
-            .padding()
+    init() {
+        // It's OK to do this in init function
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [self] _ in
+            self.name = "name_\(Int.random(in: 0..<1000))"
         }
     }
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Name: ")
+                // Only update this view when the name changed
+                MixX($name) { name in
+                    Text(name)
+                }
+            }
+            HStack {
+                Text("Input: ")
+                MixB($name) { binding in
+                    TextField("input name", text: binding)
+                        .background(Color.gray.opacity(0.3))
+                }
+            }
+        }
+        .padding()
+    }
+}
+```
