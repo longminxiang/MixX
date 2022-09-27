@@ -27,15 +27,17 @@ Then, select the dependency rule and press **Add Package**.
 
 1. Replace @State with @MixO
 
+```swift
     @MixO var name: String = "aname"
-
+```
 
 2. Move the View to MixX, Then you can change the name what ever you want
 
+```swift
     MixX($name) { name in
         Text(name)
     }
-
+```
 
 Full example code:
 
