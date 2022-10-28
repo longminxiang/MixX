@@ -35,6 +35,7 @@ public struct MixB<Content: View, Value: Equatable>: View {
             didSet {
                 guard binding.wrappedValue != bindingValue else { return }
                 binding.wrappedValue = bindingValue
+                onChange?(bindingValue)
             }
         }
 
