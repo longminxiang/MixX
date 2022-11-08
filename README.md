@@ -34,7 +34,7 @@ Then, select the dependency rule and press **Add Package**.
 2. Move the View to MixX, Then you can change the name whatever you want
 
 ```swift
-MixX($name) { name in
+MixX($name) {
     Text(name)
 }
 ```
@@ -57,14 +57,17 @@ struct ContentView: View {
             HStack {
                 Text("Name: ")
                 // Only update this view when the name changed
-                MixX($name) { name in
+                MixX($name) {
                     Text(name)
+                }
+                .onChange { _ in
+                    debugPrint("name changed")
                 }
             }
             HStack {
                 Text("Input: ")
-                MixB($name) { binding in
-                    TextField("input name", text: binding)
+                MixX($name) {
+                    TextField("input name", text: $name.binding)
                         .background(Color.gray.opacity(0.3))
                 }
             }

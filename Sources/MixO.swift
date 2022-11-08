@@ -5,13 +5,13 @@
 //  Created by Eric Long on 2022/9/28.
 //
 
-import Foundation
+import SwiftUI
 
 /// MixX Object PropertyWrapper
 ///
 /// Usage
 /// ```swift
-/// @MixO var name: String = "eric"
+/// @MixO var name: String = "name"
 /// ```
 ///
 @propertyWrapper public struct MixO<Value> {
@@ -26,7 +26,7 @@ import Foundation
 
     private var ref: ValueRef<Value>
     /// Observe Key
-    public let key: MixXCenter.Key = .init(String(UUID().uuidString.prefix(8)))
+    public let key: MixXCenter.Key
 
     /// A binding to the self, use with (`$`)
     public var projectedValue: Self { self }
@@ -37,12 +37,24 @@ import Foundation
         nonmutating set {
             let oldValue = ref.value
             ref.value = newValue
-            MixXCenter.post(key, userInfo: ["oldValue": oldValue])
+            MixXCenter.post(key, userInfo: ["key": key, "oldValue": oldValue])
         }
     }
 
     /// Initor
-    public init(wrappedValue: Value) {
+    public init(wrappedValue: Value, key: MixXCenter.Key? = nil) {
+        self.key = key ?? .init(String(UUID().uuidString.prefix(8)))
         self.ref = ValueRef(wrappedValue)
+    }
+}
+
+extension MixO where Value: Equatable {
+
+    /// Binding value
+    public var binding: Binding<Value> {
+        .init(
+            get: { wrappedValue },
+            set: { if wrappedValue != $0 { wrappedValue = $0 } }
+        )
     }
 }

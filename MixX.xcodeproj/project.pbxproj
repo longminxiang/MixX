@@ -14,7 +14,6 @@
 		0780F7EC28E3571500977B7E /* MixX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780F7EB28E3571500977B7E /* MixX.swift */; };
 		0780F7EE28E3579600977B7E /* MixXCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780F7ED28E3579600977B7E /* MixXCenter.swift */; };
 		0780F7F028E35A0100977B7E /* MixO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780F7EF28E35A0100977B7E /* MixO.swift */; };
-		0780F7F228E35B8D00977B7E /* MixB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780F7F128E35B8D00977B7E /* MixB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		0780F7EB28E3571500977B7E /* MixX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixX.swift; sourceTree = "<group>"; };
 		0780F7ED28E3579600977B7E /* MixXCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixXCenter.swift; sourceTree = "<group>"; };
 		0780F7EF28E35A0100977B7E /* MixO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixO.swift; sourceTree = "<group>"; };
-		0780F7F128E35B8D00977B7E /* MixB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 			children = (
 				0780F7EB28E3571500977B7E /* MixX.swift */,
 				0780F7EF28E35A0100977B7E /* MixO.swift */,
-				0780F7F128E35B8D00977B7E /* MixB.swift */,
 				0780F7ED28E3579600977B7E /* MixXCenter.swift */,
 			);
 			path = Sources;
@@ -166,7 +163,6 @@
 				0780F7EC28E3571500977B7E /* MixX.swift in Sources */,
 				0780F7DC28E3567800977B7E /* ContentView.swift in Sources */,
 				0780F7EE28E3579600977B7E /* MixXCenter.swift in Sources */,
-				0780F7F228E35B8D00977B7E /* MixB.swift in Sources */,
 				0780F7F028E35A0100977B7E /* MixO.swift in Sources */,
 				0780F7DA28E3567800977B7E /* MixXApp.swift in Sources */,
 			);
@@ -297,6 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MixX/Preview Content\"";
+				DEVELOPMENT_TEAM = U7D47F5WSK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -326,6 +323,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MixX/Preview Content\"";
+				DEVELOPMENT_TEAM = U7D47F5WSK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

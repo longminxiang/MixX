@@ -60,4 +60,11 @@ public struct MixXCenter {
         let obss = keys.map({ (WeakRef(observer), $0, action) })
         observers.append(contentsOf: obss)
     }
+    
+    /// Remove an observer
+    ///
+    /// - Parameter observer: The Observer.
+    public static func remove(_ observer: AnyObject) {
+        observers.removeAll(where: { $0.ref.value == nil || $0.ref.value?.isEqual(observer) ?? false })
+    }
 }
