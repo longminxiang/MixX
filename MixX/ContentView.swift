@@ -30,6 +30,10 @@ struct ContentView: View {
             .onChange { info in
                 debugPrint("on changed \(info)")
             }
+            
+            MixX($name).build(if: { name != "aname" }) {
+                Text("build if aname: \(name)")
+            }
         }
         .padding()
     }

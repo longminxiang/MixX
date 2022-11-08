@@ -70,7 +70,7 @@ public struct MixX<Content: View>: View {
     }
 
     @ObservedObject private var holder = Holder()
-    private var builder: (() -> Content)?
+    private var builder: (() -> Content?)?
     
     public init(_ key: MixXKey) {
         holder.keys.append(key.mixXKey)
@@ -102,6 +102,12 @@ extension MixX {
     public func onChange(_ action: @escaping (_ info: [AnyHashable: Any]) -> Void) -> MixX {
         holder.onChange = action
         return self
+    }
+    
+    public func build(if condition: @escaping () -> Bool, @ViewBuilder builder: @escaping () -> Content) -> MixX {
+        var s = self
+        s.builder = { condition() ? builder() : nil }
+        return s
     }
 }
 
