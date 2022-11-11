@@ -16,15 +16,21 @@ import SwiftUI
 ///
 @propertyWrapper public struct MixO<Value> {
 
-    private class ValueRef<Value> {
-        var value: Value
+    private class ValueRef<Value>: ObservableObject {
+        @Published var value: Value {
+            didSet { didSetObj?(value) }
+        }
 
-        init(_ value: Value) {
+        var didSetObj: ((Value) -> Void)?
+
+        init(_ value: Value, didset: ((Value) -> Void)? = nil) {
             self.value = value
+            self.didSetObj = didset
         }
     }
 
-    private var ref: ValueRef<Value>
+    @ObservedObject private var ref: ValueRef<Value>
+
     /// Observe Key
     public let key: MixXCenter.Key
 
@@ -41,20 +47,28 @@ import SwiftUI
         }
     }
 
-    /// Initor
-    public init(wrappedValue: Value, key: MixXCenter.Key? = nil) {
+    private init(_ wrappedValue: Value, key: MixXCenter.Key? = nil) {
         self.key = key ?? .init(String(UUID().uuidString.prefix(8)))
         self.ref = ValueRef(wrappedValue)
     }
 }
 
+extension MixO {
+    public init(wrappedValue: Value, key: MixXCenter.Key? = nil) {
+        self.init(wrappedValue, key: key)
+    }
+}
+
 extension MixO where Value: Equatable {
 
-    /// Binding value
-    public var binding: Binding<Value> {
-        .init(
-            get: { wrappedValue },
-            set: { if wrappedValue != $0 { wrappedValue = $0 } }
-        )
+    public init(wrappedValue: Value, key: MixXCenter.Key? = nil) {
+        self.init(wrappedValue, key: key)
+        self.ref = ValueRef(wrappedValue) { [self] in
+            guard self.wrappedValue != $0 else { return }
+            self.wrappedValue = $0
+        }
     }
+
+    /// Binding value
+    public var binding: Binding<Value> { $ref.value }
 }

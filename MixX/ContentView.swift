@@ -12,9 +12,11 @@ struct ContentView: View {
     @MixO var bname: String = "bname"
     @MixO var cname: String = "cname"
 
+    @MixO var show: Bool = false
+
     init() {
-        // It's OK to do this in init function
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
+        // It's OK to do this in here
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [self] _ in
             self.bname = "name_\(Int.random(in: 0..<1000))"
         }
     }
@@ -33,6 +35,16 @@ struct ContentView: View {
             
             MixX($name).build(if: { name != "aname" }) {
                 Text("build if aname: \(name)")
+            }
+
+            Toggle("show animation text", isOn: $show.binding.animation()).padding(.top, 20)
+
+            MixX($show).build(if: { show }) {
+                HStack {
+                    Text("animation text")
+                    Spacer()
+                }
+                .transition(.move(edge: .trailing))
             }
         }
         .padding()
